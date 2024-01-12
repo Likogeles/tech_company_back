@@ -72,7 +72,7 @@ def add_user():
     department = request.args.get('department')
     isAdmin = request.args.get('isAdmin')
     if id != None and name != None and surname != None and email != None and password != None and department != None and isAdmin != None:
-        userList.addTech(Tech(id, name, surname, email, password, department, isAdmin))
+        userList.addUser(User(id, name, surname, email, password, department, isAdmin))
         return "Успешно"
     else:
         return "Неудача"
@@ -87,7 +87,7 @@ def update_user():
     department = request.args.get('department')
     isAdmin = request.args.get('isAdmin')
     if id != None and name != None and surname != None and email != None and password != None and department != None and isAdmin != None:
-        userList.addTech(Tech(id, name, surname, email, password, department, isAdmin))
+        userList.updateUser(User(id, name, surname, email, password, department, isAdmin))
         return "Успешно"
     else:
         return "Неудача"
@@ -96,7 +96,7 @@ def update_user():
 def remove_user():
     id = request.args.get('id')
     if id != None:
-        userList.removeuser(id)
+        userList.removeUser(id)
         return "Успешно"
     else:
         return "Неудача"
