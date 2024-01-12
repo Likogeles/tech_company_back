@@ -46,7 +46,6 @@ class TechList:
     def removeTech(self, id):
         con = sqlite3.connect("techs.db")
         cur = con.cursor()
-        # DELETE FROM table_name WHERE condition
         cur.execute(
             f"DELETE FROM techs WHERE id = '{id}';")
         con.commit()
