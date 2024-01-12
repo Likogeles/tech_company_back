@@ -21,6 +21,7 @@ userList = UserList()
 # userList.addUser(User("3", "Сергей", "Петров", "sergey@ya.ru", "qwerty1234", "Технический отдел", "0"))
 # userList.addUser(User("4", "Петр", "Сергеев", "petr@ya.ru", "qwerty1234", "Отдел кадров", "0"))
 # userList.addUser(User("5", "Владимир", "Маяковский", "vladimir@ya.ru", "qwerty1234", "Охрана", "0"))
+# userList.addUser(User("5", "Владимир", "Маяковский", "1", "1", "Охрана", "1"))
 
 @app.route('/add_tech')
 def add_tech():
@@ -105,6 +106,17 @@ def remove_user():
 def users():
     return userList.to_json()
 
+
+@app.route('/login')
+def login():
+    email = request.args.get('email')
+    password = request.args.get('password')
+    if email != None and password != None:
+        maybe_user = userList.checkPassword(email, password)
+        if maybe_user:
+            return {"isAdmin": maybe_user.isAdmin}
+        return {"Error": "Ошибка входа"}
+    return "Неудача"
 
 @app.route('/')
 def hello():

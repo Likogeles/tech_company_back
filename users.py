@@ -59,6 +59,13 @@ class UserList:
     def getUser(self) -> list[User]:
         return self._userList
 
+    def checkPassword(self, email, password) -> User | None:
+        for user in self._userList:
+            if user.email == email:
+                if user.password == password:
+                    return user
+        return None
+
     def __str__(self):
         usersStr = ""
         for i in self._userList:
